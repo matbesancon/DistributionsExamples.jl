@@ -1,3 +1,8 @@
+using BenchmarkTools: @btime
+import Random
+using Distributions: Distribution, MixtureModel, Normal, LogNormal, pdf, ncomponents, probs, ContinuousUnivariateDistribution
+import Plots
+
 gmm = MixtureModel(
     Normal.([-1.0, 0.0, 3.0], # mean vector
             [0.3, 0.5, 1.0]),  # std vector
