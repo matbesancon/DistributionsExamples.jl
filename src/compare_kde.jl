@@ -13,4 +13,4 @@ Plots.plot!(p, kde.x, kde.density, labels = "KDE")
 
 Plots.plot!(p, xvals, yvals, labels = "Real distribution")
 Plots.xlims!(p, 0.0, 8.0)
-Plots.savefig(base_img * "compare_kde.pdf")
+Plots.savefig(joinpath(base_img, "compare_kde.pdf"))

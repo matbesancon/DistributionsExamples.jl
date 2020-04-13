@@ -13,7 +13,7 @@ const wine_labels = Int.(raw_wine_data[:,1])
 
 Plots.scatter(wine_quant[:,1], wine_quant[:,2], group = wine_labels)
 Plots.title!("Basic wine scatter plot")
-Plots.savefig(base_img * "basic_wine_scatter.pdf")
+Plots.savefig(joinpath(base_img, "basic_wine_scatter.pdf"))
 
 # Fit a MLE on two first variables, second log-transformed
 const res_normal = fit_mle(MvNormal, [wine_quant[:,1] log.(wine_quant[:,2])]')
@@ -35,12 +35,12 @@ let
     p = Plots.contour(11.0:0.05:15.0, -0.5:0.05:2.5, cont_func)
     Plots.scatter!(p, wine_quant[:,1], log.(wine_quant[:,2]), label = "Data points")
     Plots.title!(p, "Wine scatter plot & Gaussian maximum likelihood estimation")
-    Plots.savefig(p, base_img * "gaussian_contour_mle.pdf")
+    Plots.savefig(p, joinpath(base_img, "gaussian_contour_mle.pdf"))
 
     p = Plots.contour(11.0:0.05:15.0, -0.5:0.05:2.5, cont_kde)
     Plots.scatter!(p, wine_quant[:,1], log.(wine_quant[:,2]), group = wine_labels)
     Plots.title!(p, "Wine scatter plot & Kernel Density Estimation")
-    Plots.savefig(p, base_img * "gaussian_contour_kde.pdf")
+    Plots.savefig(p, joinpath(base_img, "gaussian_contour_kde.pdf"))
 end
 
 # fit a (Normal × LogNormal) on x1 × x2
@@ -94,14 +94,14 @@ let
     Plots.yaxis!(plt2, (-0.5,5.2))
     Plots.title!(plt2, "Lognormal marginal")
     pfinal = Plots.plot(plt, plt2, plt1, Plots.plot(framestyle = :none), layout = (2,2), size = (1200,800))
-    Plots.savefig(pfinal, base_img * "wine_product_dist.pdf")
+    Plots.savefig(pfinal, joinpath(base_img, "wine_product_dist.pdf"))
 
     pltconv = Plots.scatter(wine_quant[:,1], wine_quant[:,2] .- 0.73, label = "Data points", markersize = 3)
     Plots.plot!(pltconv, mean_paths[1][1:iter-1], exp.(mean_paths[2][1:iter-1]), label = "", linestyle = :dot, linecolor = :black, alpha = 0.7)
     Plots.scatter!(pltconv, mean_paths[1][1:iter-1], exp.(mean_paths[2][1:iter-1]), label = "Mean iterations", marker = :cross, linecolor = :black, alpha = 0.8)
     Plots.scatter!(pltconv, [p[1]], [exp(p[3])], label = "Final mean", color = :red)
     Plots.title!(pltconv, "Likelihood maximization - $(iter-1) iterations")
-    Plots.savefig(pltconv, base_img * "wine_product_convergence.pdf")
+    Plots.savefig(pltconv, joinpath(base_img, "wine_product_convergence.pdf"))
 end
 
 # reduced block for benchmark
@@ -138,6 +138,6 @@ let
         Plots.title!("Estimated mixture, $maxiter iterations")
         Plots.xlabel!("x1")
         Plots.ylabel!("x2")
-        Plots.savefig(base_img * "wine_mixture_iter$(maxiter)_$iter.pdf")
+        Plots.savefig(joinpath(base_img, "wine_mixture_iter$(maxiter)_$iter.pdf"))
     end
 end

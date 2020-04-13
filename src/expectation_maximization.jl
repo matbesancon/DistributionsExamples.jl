@@ -16,7 +16,7 @@ function expectation_step(X, dists, prior)
                      sum(
                         prior[j] * pdf(dists[j], X[i,:])
                         for j in eachindex(prior)
-                    )
+                     )
         end
     end
     return Z
@@ -114,6 +114,6 @@ let
         end
         plt = Plots.contour(-2.8:0.05:6.0, -2.8:0.05:6.0, contour_mixture, contours = false, legend = nothing)
         Plots.scatter!(plt, X[:,1],X[:,2], label = "", color = colors)
-        Plots.savefig(base_img * "mixture_iter$(maxiter)_$iter.pdf")
+        Plots.savefig(joinpath(base_img, "mixture_iter$(maxiter)_$iter.pdf"))
     end
 end

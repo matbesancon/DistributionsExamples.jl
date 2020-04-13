@@ -18,4 +18,4 @@ for (b,d) in zip(bandwidths, densities)
 end
 Plots.xlims!(p, 0.0, 8.0)
 Plots.title!("KDE with Gaussian Kernel")
-Plots.savefig(base_img * "KDE.pdf")
+Plots.savefig(joinpath(base_img, "KDE.pdf"))

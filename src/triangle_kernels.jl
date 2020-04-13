@@ -12,4 +12,4 @@ p = Plots.plot(tkernel.x, tkernel.density, labels = "Triangular kernel")
 Plots.plot!(p, gkernel.x, gkernel.density,
             labels = "Gaussian kernel", legend = :left)
 Plots.title!(p, "Comparison of Gaussian and triangular kernels")
-Plots.savefig(base_img * "triangle_kernel.jl")
+Plots.savefig(joinpath(base_img, "triangle_kernel.pdf"))

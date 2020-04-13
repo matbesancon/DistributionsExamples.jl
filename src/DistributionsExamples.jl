@@ -7,13 +7,22 @@ using Distributions
 import ForwardDiff
 using LinearAlgebra: dot, I
 
-const base_img = (@__DIR__) * "/../img/"
+const base_img = joinpath(@__DIR__, "../img/")
 
-include("kde_gaussian.jl")
-include("compare_kde.jl")
-include("triangle_kernels.jl")
-include("gaussian_mm.jl")
-include("expectation_maximization.jl")
-include("wine.jl")
+const scripts = 
+
+const scripts = [
+    "kde_gaussian.jl",
+    "compare_kde.jl",
+    "triangle_kernels.jl",
+    "gaussian_mm.jl",
+    "expectation_maximization.jl",
+    "wine.jl",
+]
+
+for script in scripts
+    @info "Running $script"
+    include(script)
+end
 
 end # module
