@@ -7,7 +7,7 @@ using Distributions
 import ForwardDiff
 using LinearAlgebra: dot, I
 
-const base_img = joinpath(@__DIR__, "../img/")
+const base_img = joinpath(@__DIR__, "../Figures/")
 
 const scripts = 
 
